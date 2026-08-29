@@ -2,7 +2,7 @@
  * Photography Color Hunt - Minimalist Square Color Cards & Student Search View
  */
 
-window.CurationView = (function() {
+window.CurationView = (function () {
   let searchQuery = '';
 
   function render(container, state) {
@@ -27,7 +27,7 @@ window.CurationView = (function() {
         <div class="curation-hero">
           <span class="curation-subhead">PT + Practical Exam</span>
           <h1 class="curation-title">Super Color Hunt</h1>
-          <div class="curation-course-code">Digital Photography &bull; MA 3101 &nbsp; MA 3102</div>
+          <div class="curation-course-code">Digital Photography &bull; STI College Caloocan &bull; 2026-2027</div>
         </div>
 
         <!-- Student Search Box -->
