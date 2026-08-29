@@ -219,9 +219,9 @@
 
 .square-color-card[data-color="Pink"] {
   --card-bg-color: radial-gradient(circle at 80% 20%, rgba(255, 55, 95, 0.22) 0%, rgba(28, 10, 18, 0.85) 100%);
-  --card-border-color: rgba(255, 55, 95, 0.5);
-  --card-glow-color: rgba(255, 94, 135, 0.436);
-  --color-accent: #f95f7e;
+  --card-border-color: rgba(236, 87, 147, 0.5);
+  --card-glow-color: rgba(250, 88, 166, 0.616);
+  --color-accent: #f18ab5;
 }
 
 /* Card Top: Color & Category Badge */
