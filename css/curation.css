@@ -1,0 +1,349 @@
+/* ==========================================================================
+   Photography Color Hunt - Minimalist Square Cards & Search View
+   ========================================================================== */
+
+.minimal-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+/* Minimal Hero Header */
+.curation-hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  max-width: 680px;
+}
+
+.curation-subhead {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #BF5AF2;
+  font-family: var(--font-mono);
+}
+
+.curation-title {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: #FFFFFF;
+  line-height: 1.1;
+}
+
+.curation-course-code {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+/* Central Search Box for Students */
+.search-container {
+  width: 100%;
+  max-width: 580px;
+  position: relative;
+}
+
+.student-search-input {
+  width: 100%;
+  background: rgba(18, 18, 26, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-full);
+  padding: 16px 48px 16px 52px;
+  font-size: 1.05rem;
+  font-family: inherit;
+  color: #FFFFFF;
+  outline: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.student-search-input:focus {
+  border-color: #BF5AF2;
+  box-shadow: 0 0 0 3px rgba(191, 90, 242, 0.25), 0 12px 35px rgba(0, 0, 0, 0.6);
+  background: rgba(18, 18, 26, 0.95);
+}
+
+.search-magnifier-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.search-clear-btn:hover {
+  color: #FFFFFF;
+}
+
+/* Instructor Management Strip (When Unlocked) */
+.admin-toolbar {
+  background: rgba(22, 22, 32, 0.9);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(48, 209, 88, 0.4);
+  border-radius: var(--radius-lg);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  max-width: 820px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 200ms ease;
+}
+
+.admin-toolbar-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #FFFFFF;
+}
+
+.admin-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #30D158;
+  box-shadow: 0 0 8px #30D158;
+}
+
+.admin-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Square Cards Grid */
+.cards-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
+  margin-top: 10px;
+}
+
+/* Individual Square Color Card */
+.square-color-card {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-xl);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid var(--card-border-color, var(--border-subtle));
+  background: var(--card-bg-color, var(--bg-glass-card));
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px var(--card-glow-color, transparent);
+}
+
+.square-color-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px var(--card-glow-color, transparent);
+}
+
+/* Specific Card Color Variants */
+.square-color-card[data-color="Red"] {
+  --card-bg-color: radial-gradient(circle at 80% 20%, rgba(255, 59, 48, 0.22) 0%, rgba(20, 10, 12, 0.85) 100%);
+  --card-border-color: rgba(255, 59, 48, 0.5);
+  --card-glow-color: rgba(255, 59, 48, 0.25);
+  --color-accent: #FF3B30;
+}
+
+.square-color-card[data-color="Green"] {
+  --card-bg-color: radial-gradient(circle at 80% 20%, rgba(48, 209, 88, 0.22) 0%, rgba(10, 22, 14, 0.85) 100%);
+  --card-border-color: rgba(48, 209, 88, 0.5);
+  --card-glow-color: rgba(48, 209, 88, 0.25);
+  --color-accent: #30D158;
+}
+
+.square-color-card[data-color="Blue"] {
+  --card-bg-color: radial-gradient(circle at 80% 20%, rgba(10, 132, 255, 0.22) 0%, rgba(10, 14, 25, 0.85) 100%);
+  --card-border-color: rgba(10, 132, 255, 0.5);
+  --card-glow-color: rgba(10, 132, 255, 0.25);
+  --color-accent: #0A84FF;
+}
+
+.square-color-card[data-color="Orange"] {
+  --card-bg-color: radial-gradient(circle at 80% 20%, rgba(255, 159, 10, 0.22) 0%, rgba(25, 15, 10, 0.85) 100%);
+  --card-border-color: rgba(255, 159, 10, 0.5);
+  --card-glow-color: rgba(255, 159, 10, 0.25);
+  --color-accent: #FF9F0A;
+}
+
+.square-color-card[data-color="Yellow"] {
+  --card-bg-color: radial-gradient(circle at 80% 20%, rgba(255, 214, 10, 0.2) 0%, rgba(24, 20, 10, 0.85) 100%);
+  --card-border-color: rgba(255, 214, 10, 0.5);
+  --card-glow-color: rgba(255, 214, 10, 0.25);
+  --color-accent: #FFD60A;
+}
+
+.square-color-card[data-color="Purple"] {
+  --card-bg-color: radial-gradient(circle at 80% 20%, rgba(191, 90, 242, 0.22) 0%, rgba(22, 10, 28, 0.85) 100%);
+  --card-border-color: rgba(191, 90, 242, 0.5);
+  --card-glow-color: rgba(191, 90, 242, 0.25);
+  --color-accent: #BF5AF2;
+}
+
+.square-color-card[data-color="Pink"] {
+  --card-bg-color: radial-gradient(circle at 80% 20%, rgba(255, 55, 95, 0.22) 0%, rgba(28, 10, 18, 0.85) 100%);
+  --card-border-color: rgba(255, 55, 95, 0.5);
+  --card-glow-color: rgba(255, 55, 95, 0.25);
+  --color-accent: #FF375F;
+}
+
+/* Card Top: Color & Category Badge */
+.card-top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card-color-category-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-color-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--color-accent, #FFFFFF);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-color-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.card-category-sub {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+/* Card Admin Action Buttons (Edit / Delete) */
+.card-admin-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-card-ctrl {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-card-ctrl:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--border-medium);
+}
+
+/* Card Center: Student Names */
+.card-members-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: auto 0;
+}
+
+.card-member-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.2;
+}
+
+.card-member-bullet {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-accent, var(--text-muted));
+  opacity: 0.8;
+}
+
+/* Card Bottom: Section Code */
+.card-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 10px;
+}
+
+/* Empty State */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--bg-glass-card);
+  border: 1px dashed var(--border-medium);
+  border-radius: var(--radius-xl);
+  color: #FFFFFF;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
