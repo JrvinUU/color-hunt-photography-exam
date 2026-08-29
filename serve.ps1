@@ -1,4 +1,4 @@
-# PowerShell Native Web Server for Photography Color Hunt
+# PowerShell Native Web Server for Super Color Hunt
 param(
     [int]$Port = 8080
 )
@@ -15,7 +15,7 @@ $listener.Prefixes.Add("http://127.0.0.1:$Port/")
 try {
     $listener.Start()
     Write-Host "========================================================" -ForegroundColor Magenta
-    Write-Host " PHOTOGRAPHY COLOR HUNT SERVER IS LIVE! " -ForegroundColor Green
+    Write-Host " SUPER COLOR HUNT SERVER IS LIVE! " -ForegroundColor Green
     Write-Host " Local URL     : http://localhost:$Port/" -ForegroundColor Cyan
     Write-Host " Loopback URL  : http://127.0.0.1:$Port/" -ForegroundColor Cyan
     Write-Host " Serving Path  : $Root" -ForegroundColor Gray

@@ -81,39 +81,33 @@ body {
   opacity: 0.85;
 }
 
-/* Discreet Top-Right Admin Cog Button */
+/* Invisible Top-Right Admin Access Area */
 .admin-cog-btn {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 0;
+  right: 0;
   z-index: 500;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-muted);
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  opacity: 0;
+  cursor: default;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: all var(--transition-fast);
+  pointer-events: auto;
+  user-select: none;
 }
 
 .admin-cog-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: #FFFFFF;
-  border-color: var(--border-medium);
-  transform: rotate(30deg);
+  opacity: 0;
+  background: transparent;
 }
 
 .admin-cog-btn.unlocked {
-  background: rgba(48, 209, 88, 0.15);
-  border-color: rgba(48, 209, 88, 0.5);
-  color: #30D158;
-  box-shadow: 0 0 14px rgba(48, 209, 88, 0.3);
+  opacity: 0;
 }
 
 /* App Main Container */

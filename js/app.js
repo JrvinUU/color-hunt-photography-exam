@@ -4,13 +4,32 @@
  */
 
 window.App = (function() {
-  const STORAGE_KEY = 'COLOR_HUNT_MINIMAL_ROSTER_V2';
+  const STORAGE_KEY = 'SUPER_COLOR_HUNT_ROSTER_V3';
+  const IDE_HASH_KEY = 'SUPER_COLOR_HUNT_IDE_HASH_V3';
   const ADMIN_PASSCODE = '3101';
 
   let state = {
     isTeacherUnlocked: false,
     groups: []
   };
+
+  function getIdeGroups() {
+    if (Array.isArray(window.SUPER_COLOR_HUNT_GROUPS) && window.SUPER_COLOR_HUNT_GROUPS.length > 0) {
+      return JSON.parse(JSON.stringify(window.SUPER_COLOR_HUNT_GROUPS));
+    }
+    if (window.ColorHuntMockData && Array.isArray(window.ColorHuntMockData.INITIAL_GROUPS)) {
+      return JSON.parse(JSON.stringify(window.ColorHuntMockData.INITIAL_GROUPS));
+    }
+    return [];
+  }
+
+  function getIdeHash() {
+    try {
+      return JSON.stringify(window.SUPER_COLOR_HUNT_GROUPS || []);
+    } catch (e) {
+      return '';
+    }
+  }
 
   function init() {
     loadState();
@@ -20,19 +39,26 @@ window.App = (function() {
 
   function loadState() {
     try {
+      const ideGroups = getIdeGroups();
+      const currentIdeHash = getIdeHash();
+      const savedIdeHash = localStorage.getItem(IDE_HASH_KEY);
       const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
+
+      // If data/groups.js was edited in IDE (hash changed) or no storage yet, load directly from IDE config
+      if (saved && savedIdeHash === currentIdeHash) {
         const parsed = JSON.parse(saved);
-        state.groups = Array.isArray(parsed.groups) ? parsed.groups : [];
+        state.groups = Array.isArray(parsed.groups) ? parsed.groups : ideGroups;
         state.isTeacherUnlocked = !!parsed.isTeacherUnlocked;
       } else {
-        // Clean empty roster ready for instructor input
-        state.groups = [];
-        state.isTeacherUnlocked = false;
+        // Load fresh from data/groups.js
+        state.groups = ideGroups;
+        state.isTeacherUnlocked = saved ? !!JSON.parse(saved).isTeacherUnlocked : false;
+        localStorage.setItem(IDE_HASH_KEY, currentIdeHash);
+        saveState();
       }
     } catch (e) {
       console.error('Failed to load state:', e);
-      state.groups = [];
+      state.groups = getIdeGroups();
     }
   }
 
@@ -47,6 +73,14 @@ window.App = (function() {
     }
   }
 
+  function resetToIdeConfig() {
+    state.groups = getIdeGroups();
+    localStorage.setItem(IDE_HASH_KEY, getIdeHash());
+    saveState();
+    render();
+    showToast('Reloaded groups from data/groups.js', 'success');
+  }
+
   function handleCogClick() {
     if (state.isTeacherUnlocked) {
       // Lock edit mode
@@ -55,13 +89,13 @@ window.App = (function() {
       render();
       showToast('Locked student view mode', 'info');
     } else {
-      // Prompt for password
-      const entered = prompt('Enter Instructor Passcode (Default: 3101):');
+      // Prompt for password without hint
+      const entered = prompt('Enter Passcode:');
       if (entered === ADMIN_PASSCODE || entered === 'admin') {
         state.isTeacherUnlocked = true;
         saveState();
         render();
-        showToast('Instructor management unlocked', 'success');
+        showToast('Instructor mode unlocked', 'success');
       } else if (entered !== null) {
         showToast('Incorrect passcode', 'error');
       }
@@ -74,7 +108,7 @@ window.App = (function() {
 
     if (cogBtn) {
       cogBtn.classList.toggle('unlocked', state.isTeacherUnlocked);
-      cogBtn.title = state.isTeacherUnlocked ? 'Instructor Mode Active (Click to Lock)' : 'Instructor Login';
+      cogBtn.title = '';
     }
 
     CurationView.render(mainContainer, state);
@@ -108,6 +142,7 @@ window.App = (function() {
     init,
     render,
     saveState,
+    resetToIdeConfig,
     handleCogClick,
     showToast,
     getState: () => state

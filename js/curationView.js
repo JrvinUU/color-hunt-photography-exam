@@ -26,7 +26,7 @@ window.CurationView = (function() {
         <!-- Minimal Hero Header -->
         <div class="curation-hero">
           <span class="curation-subhead">PT + Practical Exam</span>
-          <h1 class="curation-title">Photography Color Hunt</h1>
+          <h1 class="curation-title">Super Color Hunt</h1>
           <div class="curation-course-code">Digital Photography &bull; MA 3101 &nbsp; MA 3102</div>
         </div>
 
@@ -49,12 +49,9 @@ window.CurationView = (function() {
               <button id="btn-admin-add" class="btn btn-sm btn-primary">+ Add 3 Students</button>
               <button id="btn-admin-paste" class="btn btn-sm btn-secondary">Paste List</button>
               <button id="btn-admin-balance" class="btn btn-sm btn-accent" title="Equally distribute 7 Colors & 2 Categories">Auto-Balance</button>
+              <button id="btn-admin-reset-ide" class="btn btn-sm btn-secondary" title="Reload directly from data/groups.js">Reload IDE File</button>
               <button id="btn-admin-export" class="btn btn-sm btn-secondary">Export CSV</button>
-              ${groups.length === 0 ? `
-                <button id="btn-admin-sample" class="btn btn-sm btn-secondary">Load Sample</button>
-              ` : `
-                <button id="btn-admin-clear" class="btn btn-sm btn-danger">Clear</button>
-              `}
+              <button id="btn-admin-clear" class="btn btn-sm btn-danger">Clear</button>
             </div>
           </div>
         ` : ''}
@@ -190,21 +187,20 @@ window.CurationView = (function() {
       });
     }
 
+    // Admin: Reload from IDE config
+    const resetIdeBtn = container.querySelector('#btn-admin-reset-ide');
+    if (resetIdeBtn) {
+      resetIdeBtn.addEventListener('click', () => {
+        if (confirm('Reload all groups directly from data/groups.js? Any unsaved browser tweaks will be replaced with the file content.')) {
+          App.resetToIdeConfig();
+        }
+      });
+    }
+
     // Admin: Export CSV
     const exportBtn = container.querySelector('#btn-admin-export');
     if (exportBtn) {
       exportBtn.addEventListener('click', () => exportCSV(state));
-    }
-
-    // Admin: Load Sample
-    const sampleBtn = container.querySelector('#btn-admin-sample');
-    if (sampleBtn) {
-      sampleBtn.addEventListener('click', () => {
-        state.groups = JSON.parse(JSON.stringify(ColorHuntMockData.INITIAL_GROUPS));
-        App.saveState();
-        App.showToast('Loaded sample student roster', 'success');
-        render(container, state);
-      });
     }
 
     // Admin: Clear
@@ -221,6 +217,14 @@ window.CurationView = (function() {
     }
 
     bindCardActions(container, state);
+  }
+
+  function getAvailableSections(state) {
+    const defaults = ['MA 3101', 'MA 3102'];
+    const fromGroups = (state.groups || []).map(g => g.section).filter(Boolean);
+    const fromIde = (window.SUPER_COLOR_HUNT_GROUPS || []).map(g => g.section).filter(Boolean);
+    const unique = Array.from(new Set([...defaults, ...fromGroups, ...fromIde]));
+    return unique.sort();
   }
 
   function bindCardActions(container, state) {
@@ -256,6 +260,7 @@ window.CurationView = (function() {
     const m3 = entry?.members?.[2] || '';
     const curColor = entry?.color || 'Red';
     const curCat = entry?.category || 'Natural';
+    const availableSections = getAvailableSections(state);
 
     const modalHtml = `
       <div class="modal-backdrop active" id="modal-card-edit">
@@ -268,8 +273,7 @@ window.CurationView = (function() {
             <div class="form-group">
               <label class="form-label">Section</label>
               <select id="modal-sec-select" class="form-input">
-                <option value="MA 3101" ${curSec === 'MA 3101' ? 'selected' : ''}>MA 3101</option>
-                <option value="MA 3102" ${curSec === 'MA 3102' ? 'selected' : ''}>MA 3102</option>
+                ${availableSections.map(s => `<option value="${s}" ${curSec === s ? 'selected' : ''}>${s}</option>`).join('')}
               </select>
             </div>
 
@@ -357,6 +361,7 @@ window.CurationView = (function() {
   }
 
   function showPasteModal(state) {
+    const availableSections = getAvailableSections(state);
     const modalHtml = `
       <div class="modal-backdrop active" id="modal-paste-list">
         <div class="modal-box">
@@ -368,8 +373,7 @@ window.CurationView = (function() {
             <div class="form-group">
               <label class="form-label">Section</label>
               <select id="paste-sec-select" class="form-input">
-                <option value="MA 3101">MA 3101</option>
-                <option value="MA 3102">MA 3102</option>
+                ${availableSections.map(s => `<option value="${s}">${s}</option>`).join('')}
               </select>
             </div>
             <div class="form-group">
@@ -446,7 +450,7 @@ window.CurationView = (function() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `Photography_Color_Hunt_${new Date().toISOString().split('T')[0]}.csv`;
+    a.download = `Super_Color_Hunt_${new Date().toISOString().split('T')[0]}.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
