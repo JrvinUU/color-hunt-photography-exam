@@ -25,9 +25,9 @@ window.CurationView = (function () {
       <div class="minimal-wrapper">
         <!-- Minimal Hero Header -->
         <div class="curation-hero">
-          <span class="curation-subhead">PT + Practical Exam</span>
+          <span class="curation-subhead">Prelims: PT + Practical Exam</span>
           <h1 class="curation-title">Super Color Hunt</h1>
-          <div class="curation-course-code">Digital Photography &bull; STI College Caloocan &bull; 2026-2027</div>
+          <div class="curation-course-code">STI College Caloocan &bull; 1st Semester 2026-2027</div>
         </div>
 
         <!-- Student Search Box -->

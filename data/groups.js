@@ -63,4 +63,11 @@ window.SUPER_COLOR_HUNT_GROUPS = [
     category: 'Natural',
     members: ['Kryztanica Caparas', 'Denise Franz Clemente']
   },
+  {
+    id: 'grp-05',
+    section: 'MA 3102',
+    color: 'Pink',
+    category: 'Artificial',
+    members: ['Jane Alyssa Mae Alvarado', 'Mark Julius Catibud', 'Juan Carlo Palomares']
+  },
 ];
