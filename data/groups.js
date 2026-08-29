@@ -56,4 +56,11 @@ window.SUPER_COLOR_HUNT_GROUPS = [
     category: 'Artificial',
     members: ['Patrick Angelo Ng', 'Ethan Dimaano', 'Mark Vincent Nevado']
   },
+  {
+    id: 'grp-04',
+    section: 'MA 3102',
+    color: 'Blue',
+    category: 'Natural',
+    members: ['Kryztanica Caparas', 'Denise Franz Clemente']
+  },
 ];
