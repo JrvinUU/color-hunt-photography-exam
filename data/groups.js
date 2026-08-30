@@ -70,4 +70,18 @@ window.SUPER_COLOR_HUNT_GROUPS = [
     category: 'Artificial',
     members: ['Jane Alyssa Mae Alvarado', 'Mark Julius Catibud', 'Juan Carlo Palomares']
   },
+  {
+    id: 'grp-06',
+    section: 'MA 3102',
+    color: 'Green',
+    category: 'Artificial',
+    members: ['John Miguel De Guzman', 'Boris Ian Dela Cruz', 'Vladimir Rances']
+  },
+  {
+    id: 'grp-07',
+    section: 'MA 3102',
+    color: 'Orange',
+    category: 'Artificial',
+    members: ['Nicole Santos', 'Gester Lyndon Sacil', 'Khanna Valencia']
+  },
 ];
