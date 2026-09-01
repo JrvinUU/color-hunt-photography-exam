@@ -375,14 +375,14 @@
   transform: translateY(-1px);
 }
 
-.disclaimer-pulse-dot {
+/*.disclaimer-pulse-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: #30D158;
   box-shadow: 0 0 8px #30D158;
   animation: dotPulse 2s infinite ease-in-out;
-}
+} */
 
 /* Color Swatches Rainbow Bar */
 .footer-color-swatches {
