@@ -9,13 +9,17 @@
   <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/curation.css">
+  <link rel="stylesheet" href="css/animations.css">
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23BF5AF2'/><circle cx='50' cy='50' r='20' fill='%23FF375F'/></svg>">
 </head>
 <body>
-  <!-- Ambient Fluid Chromatic Background Mesh -->
+  <!-- Ambient Fluid Chromatic Background Mesh & Floating Orbs -->
   <div class="chromatic-background"></div>
+  <div class="floating-orb floating-orb-1"></div>
+  <div class="floating-orb floating-orb-2"></div>
+  <div class="floating-orb floating-orb-3"></div>
 
   <!-- Invisible Instructor Access Area in Top-Right Corner -->
   <button id="btn-admin-cog" class="admin-cog-btn" tabindex="-1">
@@ -30,6 +34,36 @@
     <!-- Injected dynamically by curationView.js -->
   </main>
 
+  <!-- Credits & Disclaimer Website Footer -->
+  <footer class="site-footer" id="site-footer">
+    <div class="footer-card">
+      <!-- Educational Purpose Disclaimer -->
+      <div class="footer-disclaimer-badge">
+        <span class="disclaimer-pulse-dot"></span>
+        <span>For Education Purposes Only</span>
+      </div>
+
+      <!-- Interactive 7 Pure Colors Animated Swatches -->
+      <div class="footer-color-swatches" id="footer-color-swatches" title="Click a color for colorful magic!">
+        <button class="footer-color-bubble" data-color="Red" style="--c: #FF3B30;" title="Red - Pure Exam Color" aria-label="Red"></button>
+        <button class="footer-color-bubble" data-color="Orange" style="--c: #FF9F0A;" title="Orange - Pure Exam Color" aria-label="Orange"></button>
+        <button class="footer-color-bubble" data-color="Yellow" style="--c: #FFD60A;" title="Yellow - Pure Exam Color" aria-label="Yellow"></button>
+        <button class="footer-color-bubble" data-color="Green" style="--c: #30D158;" title="Green - Pure Exam Color" aria-label="Green"></button>
+        <button class="footer-color-bubble" data-color="Blue" style="--c: #0A84FF;" title="Blue - Pure Exam Color" aria-label="Blue"></button>
+        <button class="footer-color-bubble" data-color="Purple" style="--c: #BF5AF2;" title="Purple - Pure Exam Color" aria-label="Purple"></button>
+        <button class="footer-color-bubble" data-color="Pink" style="--c: #FF375F;" title="Pink - Pure Exam Color" aria-label="Pink"></button>
+      </div>
+
+      <!-- Developer Credits -->
+      <div class="footer-credits">
+        <span class="credits-intro">Developed by</span>
+        <span class="author-name">Jerome Arvin San Diego</span>
+        <span class="credits-separator">&bull;</span>
+        <span class="credits-assistance">w/ Assistance from <span class="antigravity-badge"><span class="antigravity-sparkle">✨</span> Antigravity IDE</span></span>
+      </div>
+    </div>
+  </footer>
+
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container"></div>
 
@@ -37,6 +71,7 @@
   <script src="data/groups.js"></script>
   <script src="js/distribution.js"></script>
   <script src="js/mockData.js"></script>
+  <script src="js/cuteAnimations.js"></script>
   <script src="js/curationView.js"></script>
   <script src="js/galleryView.js"></script>
   <script src="js/app.js"></script>

@@ -1,0 +1,513 @@
+/* ==========================================================================
+   Super Color Hunt - Cute & Colorful Animations & Modern Effects
+   ========================================================================== */
+
+/* --- 1. Ambient Background Canvas / Layer --- */
+.ambient-sparkles-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.75;
+}
+
+/* Floating colorful glowing orbs */
+.floating-orb {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(55px);
+  z-index: 0;
+  opacity: 0.45;
+  animation: orbDrift 20s infinite ease-in-out alternate;
+}
+
+.floating-orb-1 {
+  top: 10%;
+  left: 5%;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(255, 55, 95, 0.5) 0%, rgba(191, 90, 242, 0) 70%);
+  animation-duration: 18s;
+}
+
+.floating-orb-2 {
+  top: 45%;
+  right: 5%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(10, 132, 255, 0.45) 0%, rgba(48, 209, 88, 0) 70%);
+  animation-duration: 24s;
+  animation-delay: -5s;
+}
+
+.floating-orb-3 {
+  bottom: 15%;
+  left: 30%;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(255, 214, 10, 0.4) 0%, rgba(255, 159, 10, 0) 70%);
+  animation-duration: 22s;
+  animation-delay: -10s;
+}
+
+@keyframes orbDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -35px) scale(1.15);
+  }
+  100% {
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+}
+
+/* --- 2. Title & Header Cute Animations --- */
+.curation-title {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 40%, #BF5AF2 70%, #FF375F 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleShimmer 8s ease infinite alternate;
+}
+
+@keyframes titleShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.curation-hero {
+  position: relative;
+}
+
+/* Cute Floating Emoji / Badges Around Header */
+.cute-floating-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  animation: floatBob 4s ease-in-out infinite alternate;
+}
+
+.cute-floating-badge:hover {
+  transform: scale(1.3) rotate(12deg) !important;
+  box-shadow: 0 8px 20px rgba(191, 90, 242, 0.5);
+}
+
+.cute-floating-badge:nth-child(1) { animation-delay: 0s; }
+.cute-floating-badge:nth-child(2) { animation-delay: -1.3s; }
+.cute-floating-badge:nth-child(3) { animation-delay: -2.6s; }
+
+.header-badges-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+@keyframes floatBob {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+  100% {
+    transform: translateY(2px) rotate(-3deg);
+  }
+}
+
+/* --- 3. Cute Card Micro-Interactions & Spring Pop --- */
+.square-color-card {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+  animation: cardPopIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+  cursor: pointer;
+}
+
+.square-color-card:hover {
+  transform: translateY(-8px) scale(1.03) !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 35px var(--card-glow-color, rgba(191, 90, 242, 0.4));
+}
+
+.square-color-card:active {
+  transform: scale(0.97) translateY(-2px) !important;
+}
+
+@keyframes cardPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+  }
+  70% {
+    transform: scale(1.03) translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Pulsing color dot in cards */
+.card-color-dot {
+  position: relative;
+  animation: dotPulse 2.5s infinite ease-in-out;
+}
+
+.card-color-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.4;
+  animation: ripplePing 2s infinite cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+@keyframes ripplePing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* Category sub tag animated shimmer */
+.card-category-sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: transform 0.2s ease;
+}
+
+.square-color-card:hover .card-category-sub {
+  transform: translateX(3px);
+  color: #FFFFFF;
+}
+
+/* --- 4. Search Input Glow & Cute Icon Animation --- */
+.search-container:hover .search-magnifier-icon {
+  color: #BF5AF2;
+  transform: translateY(-50%) scale(1.15) rotate(-5deg);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.student-search-input:focus {
+  animation: inputGlowPulse 3s infinite alternate;
+}
+
+@keyframes inputGlowPulse {
+  0% {
+    box-shadow: 0 0 0 3px rgba(191, 90, 242, 0.25), 0 12px 35px rgba(0, 0, 0, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 4px rgba(255, 55, 95, 0.35), 0 16px 45px rgba(191, 90, 242, 0.3);
+  }
+}
+
+/* --- 5. Pop Particles for Click / Tap --- */
+.cute-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  user-select: none;
+  font-size: 1rem;
+  will-change: transform, opacity;
+  animation: particleBurst 0.9s cubic-bezier(0.12, 0.8, 0.32, 1) forwards;
+}
+
+@keyframes particleBurst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.6) rotate(0deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(var(--dx), var(--dy)) scale(1.25) rotate(var(--rot));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--dx) * 1.3), calc(var(--dy) * 1.3 + 30px)) scale(0.2) rotate(calc(var(--rot) * 1.8));
+  }
+}
+
+/* --- 6. Credits & Disclaimer Footer Styles --- */
+.site-footer {
+  width: 100%;
+  max-width: 820px;
+  margin: 50px auto 20px auto;
+  padding: 0 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-card {
+  background: rgba(16, 16, 24, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 59, 48, 0.6) 15%, 
+    rgba(255, 159, 10, 0.6) 30%, 
+    rgba(255, 214, 10, 0.6) 45%, 
+    rgba(48, 209, 88, 0.6) 60%, 
+    rgba(10, 132, 255, 0.6) 75%, 
+    rgba(191, 90, 242, 0.6) 90%, 
+    transparent 100%
+  );
+  animation: rainbowBorderSlide 6s linear infinite;
+}
+
+@keyframes rainbowBorderSlide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+
+.footer-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(191, 90, 242, 0.15);
+}
+
+/* Disclaimer Badge */
+.footer-disclaimer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease;
+}
+
+.footer-disclaimer-badge:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.disclaimer-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #30D158;
+  box-shadow: 0 0 8px #30D158;
+  animation: dotPulse 2s infinite ease-in-out;
+}
+
+/* Color Swatches Rainbow Bar */
+.footer-color-swatches {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 4px 10px;
+}
+
+.footer-color-bubble {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--c);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  box-shadow: 0 0 10px var(--c);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+  animation: bubbleWave 3.5s infinite ease-in-out;
+}
+
+.footer-color-bubble:nth-child(1) { animation-delay: 0.0s; }
+.footer-color-bubble:nth-child(2) { animation-delay: 0.2s; }
+.footer-color-bubble:nth-child(3) { animation-delay: 0.4s; }
+.footer-color-bubble:nth-child(4) { animation-delay: 0.6s; }
+.footer-color-bubble:nth-child(5) { animation-delay: 0.8s; }
+.footer-color-bubble:nth-child(6) { animation-delay: 1.0s; }
+.footer-color-bubble:nth-child(7) { animation-delay: 1.2s; }
+
+@keyframes bubbleWave {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  30% {
+    transform: translateY(-5px) scale(1.15);
+  }
+  60% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.footer-color-bubble:hover {
+  transform: scale(1.5) translateY(-4px) !important;
+  box-shadow: 0 0 18px var(--c), 0 4px 12px rgba(0, 0, 0, 0.5);
+  border-color: #FFFFFF;
+}
+
+.footer-color-bubble:active {
+  transform: scale(0.9) !important;
+}
+
+/* Credits Text */
+.footer-credits {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.credits-intro {
+  color: var(--text-muted);
+}
+
+.author-name {
+  font-weight: 700;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFB340 30%, #FF375F 60%, #BF5AF2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.01em;
+  padding: 0 2px;
+  transition: filter 0.2s ease;
+}
+
+.author-name:hover {
+  filter: brightness(1.2);
+}
+
+.credits-separator {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+}
+
+.credits-assistance {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+}
+
+.antigravity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, rgba(191, 90, 242, 0.15) 0%, rgba(10, 132, 255, 0.15) 100%);
+  border: 1px solid rgba(191, 90, 242, 0.35);
+  padding: 2px 10px;
+  border-radius: var(--radius-sm);
+  color: #E2D9F3;
+  font-weight: 600;
+  font-size: 0.82rem;
+  box-shadow: 0 2px 8px rgba(191, 90, 242, 0.2);
+  transition: all 0.25s ease;
+}
+
+.antigravity-badge:hover {
+  background: linear-gradient(135deg, rgba(191, 90, 242, 0.25) 0%, rgba(10, 132, 255, 0.25) 100%);
+  border-color: rgba(191, 90, 242, 0.6);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(191, 90, 242, 0.4);
+  transform: translateY(-1px);
+}
+
+.antigravity-sparkle {
+  font-size: 0.9rem;
+  display: inline-block;
+  animation: spinSparkle 4s linear infinite;
+}
+
+@keyframes spinSparkle {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.25) rotate(180deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .footer-card {
+    padding: 20px 16px;
+    gap: 14px;
+  }
+
+  .footer-credits {
+    font-size: 0.8rem;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .credits-separator {
+    display: none;
+  }
+
+  .footer-color-bubble {
+    width: 18px;
+    height: 18px;
+  }
+}

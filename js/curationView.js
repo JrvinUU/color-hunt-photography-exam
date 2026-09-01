@@ -23,9 +23,13 @@ window.CurationView = (function () {
 
     container.innerHTML = `
       <div class="minimal-wrapper">
-        <!-- Minimal Hero Header -->
+        <!-- Minimal Hero Header with Cute Floating Badges -->
         <div class="curation-hero">
-          <span class="curation-subhead">Prelims: PT + Practical Exam</span>
+          <div class="header-badges-row">
+            <span class="cute-floating-badge" title="Digital Photography!">📸</span>
+            <span class="curation-subhead">Prelims: PT + Practical Exam</span>
+            <span class="cute-floating-badge" title="7 Pure Colors!">🌈</span>
+          </div>
           <h1 class="curation-title">Super Color Hunt</h1>
           <div class="curation-course-code">STI College Caloocan &bull; 1st Semester 2026-2027</div>
         </div>

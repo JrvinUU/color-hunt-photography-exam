@@ -35,6 +35,9 @@ window.App = (function() {
     loadState();
     bindGlobalEvents();
     render();
+    if (window.CuteAnimations && typeof window.CuteAnimations.init === 'function') {
+      window.CuteAnimations.init();
+    }
   }
 
   function loadState() {

@@ -220,7 +220,7 @@
 .square-color-card[data-color="Pink"] {
   --card-bg-color: radial-gradient(circle at 80% 20%, rgba(255, 55, 95, 0.22) 0%, rgba(28, 10, 18, 0.85) 100%);
   --card-border-color: rgba(236, 87, 147, 0.5);
-  --card-glow-color: rgba(250, 88, 166, 0.616);
+  --card-glow-color: rgba(250, 88, 166, 0.479);
   --color-accent: #f18ab5;
 }
 
