@@ -185,7 +185,7 @@
   }
 }
 
-/* Pulsing color dot in cards */
+/* Pulsing color dot in cards
 .card-color-dot {
   position: relative;
   animation: dotPulse 5s infinite ease-in-out;
@@ -223,7 +223,7 @@
     transform: scale(2.2);
     opacity: 0;
   }
-}
+} */
 
 /* Category sub tag animated shimmer */
 .card-category-sub {
