@@ -185,11 +185,11 @@
   }
 }
 
-/* Pulsing color dot in cards
+/* Pulsing color dot in cards */
 .card-color-dot {
   position: relative;
-  animation: dotPulse 2.5s infinite ease-in-out;
-} */
+  animation: dotPulse 5s infinite ease-in-out;
+}
 
 .card-color-dot::after {
   content: '';
