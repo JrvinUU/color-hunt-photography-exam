@@ -1,6 +1,7 @@
 /**
  * Photography Color Hunt - Main Application Controller
- * Handles password-protected admin cog and LocalStorage synchronization.
+ * Handles view switching (Curation Roster vs Document Sorter Gallery),
+ * password-protected instructor cog, and LocalStorage / IDE synchronization.
  */
 
 window.App = (function() {
@@ -10,6 +11,7 @@ window.App = (function() {
 
   let state = {
     isTeacherUnlocked: false,
+    currentView: 'curation', // 'curation' | 'gallery'
     groups: []
   };
 
@@ -33,8 +35,17 @@ window.App = (function() {
 
   function init() {
     loadState();
+    
+    // Check initial hash route
+    if (window.location.hash === '#gallery') {
+      state.currentView = 'gallery';
+    } else if (window.location.hash === '#roster' || window.location.hash === '#curation') {
+      state.currentView = 'curation';
+    }
+
     bindGlobalEvents();
     render();
+
     if (window.CuteAnimations && typeof window.CuteAnimations.init === 'function') {
       window.CuteAnimations.init();
     }
@@ -84,6 +95,13 @@ window.App = (function() {
     showToast('Reloaded groups from data/groups.js', 'success');
   }
 
+  function switchView(viewName) {
+    state.currentView = viewName === 'gallery' ? 'gallery' : 'curation';
+    window.location.hash = state.currentView === 'gallery' ? '#gallery' : '#roster';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    render();
+  }
+
   function handleCogClick() {
     if (state.isTeacherUnlocked) {
       // Lock edit mode
@@ -114,7 +132,11 @@ window.App = (function() {
       cogBtn.title = '';
     }
 
-    CurationView.render(mainContainer, state);
+    if (state.currentView === 'gallery') {
+      GalleryView.render(mainContainer, state);
+    } else {
+      CurationView.render(mainContainer, state);
+    }
   }
 
   function bindGlobalEvents() {
@@ -122,6 +144,15 @@ window.App = (function() {
     if (cogBtn) {
       cogBtn.addEventListener('click', handleCogClick);
     }
+
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash;
+      const targetView = hash === '#gallery' ? 'gallery' : 'curation';
+      if (state.currentView !== targetView) {
+        state.currentView = targetView;
+        render();
+      }
+    });
   }
 
   function showToast(message, type = 'info') {
@@ -144,6 +175,7 @@ window.App = (function() {
   return {
     init,
     render,
+    switchView,
     saveState,
     resetToIdeConfig,
     handleCogClick,

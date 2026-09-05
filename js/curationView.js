@@ -34,6 +34,22 @@ window.CurationView = (function () {
           <div class="curation-course-code">STI College Caloocan &bull; 1st Semester 2026-2027</div>
         </div>
 
+        <!-- View Switcher Tabs (Color Roster vs Gallery Exhibition) -->
+        <div class="view-navigation-bar">
+          <div class="view-tabs-pill-container">
+            <button id="btn-tab-curation" class="view-nav-tab-btn active" title="View Group Assignments & Roster">
+              <span class="view-tab-icon">📋</span>
+              <span>Color Roster</span>
+              <span class="view-tab-count">${groups.length}</span>
+            </button>
+            <button id="btn-tab-gallery" class="view-nav-tab-btn" title="View Document Sorter Exhibition">
+              <span class="view-tab-icon">📁</span>
+              <span>Gallery Sorter</span>
+              <span class="view-tab-count">${groups.length}</span>
+            </button>
+          </div>
+        </div>
+
         <!-- Student Search Box -->
         <div class="search-container">
           <svg class="search-magnifier-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -133,6 +149,14 @@ window.CurationView = (function () {
   }
 
   function bindEvents(container, state) {
+    // Switch to Gallery Sorter View
+    const galleryTabBtn = container.querySelector('#btn-tab-gallery');
+    if (galleryTabBtn) {
+      galleryTabBtn.addEventListener('click', () => {
+        App.switchView('gallery');
+      });
+    }
+
     // Search input
     const searchInput = container.querySelector('#student-search-box');
     if (searchInput) {
