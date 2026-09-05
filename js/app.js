@@ -37,12 +37,13 @@ window.App = (function() {
   function init() {
     loadState();
     
-    // Check initial hash route
-    if (ENABLE_GALLERY_VIEW && window.location.hash === '#gallery') {
-      state.currentView = 'gallery';
-    } else {
-      state.currentView = 'curation';
+    // Clear any previous gallery hash so user is strictly on curation view
+    if (window.location.hash) {
+      try {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      } catch (e) {}
     }
+    state.currentView = 'curation';
 
     bindGlobalEvents();
     render();
@@ -97,13 +98,7 @@ window.App = (function() {
   }
 
   function switchView(viewName) {
-    if (!ENABLE_GALLERY_VIEW && viewName === 'gallery') {
-      showToast('Gallery view is currently disabled', 'info');
-      return;
-    }
-    state.currentView = viewName === 'gallery' ? 'gallery' : 'curation';
-    window.location.hash = state.currentView === 'gallery' ? '#gallery' : '#roster';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    state.currentView = 'curation';
     render();
   }
 
@@ -137,11 +132,7 @@ window.App = (function() {
       cogBtn.title = '';
     }
 
-    if (ENABLE_GALLERY_VIEW && state.currentView === 'gallery') {
-      GalleryView.render(mainContainer, state);
-    } else {
-      CurationView.render(mainContainer, state);
-    }
+    CurationView.render(mainContainer, state);
   }
 
   function bindGlobalEvents() {
@@ -149,16 +140,6 @@ window.App = (function() {
     if (cogBtn) {
       cogBtn.addEventListener('click', handleCogClick);
     }
-
-    window.addEventListener('hashchange', () => {
-      if (!ENABLE_GALLERY_VIEW) return;
-      const hash = window.location.hash;
-      const targetView = hash === '#gallery' ? 'gallery' : 'curation';
-      if (state.currentView !== targetView) {
-        state.currentView = targetView;
-        render();
-      }
-    });
   }
 
   function showToast(message, type = 'info') {
