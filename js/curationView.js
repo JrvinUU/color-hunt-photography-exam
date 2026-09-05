@@ -34,7 +34,7 @@ window.CurationView = (function () {
           <div class="curation-course-code">STI College Caloocan &bull; 1st Semester 2026-2027</div>
         </div>
 
-        <!-- View Switcher Tabs (Color Roster vs Gallery Exhibition) -->
+        <!-- View Switcher Tabs (Temporarily disabled)
         <div class="view-navigation-bar">
           <div class="view-tabs-pill-container">
             <button id="btn-tab-curation" class="view-nav-tab-btn active" title="View Group Assignments & Roster">
@@ -49,6 +49,7 @@ window.CurationView = (function () {
             </button>
           </div>
         </div>
+        -->
 
         <!-- Student Search Box -->
         <div class="search-container">

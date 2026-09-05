@@ -8,6 +8,7 @@ window.App = (function() {
   const STORAGE_KEY = 'SUPER_COLOR_HUNT_ROSTER_V3';
   const IDE_HASH_KEY = 'SUPER_COLOR_HUNT_IDE_HASH_V3';
   const ADMIN_PASSCODE = '3101';
+  const ENABLE_GALLERY_VIEW = false; // Set to true to re-enable gallery view & document sorter
 
   let state = {
     isTeacherUnlocked: false,
@@ -37,9 +38,9 @@ window.App = (function() {
     loadState();
     
     // Check initial hash route
-    if (window.location.hash === '#gallery') {
+    if (ENABLE_GALLERY_VIEW && window.location.hash === '#gallery') {
       state.currentView = 'gallery';
-    } else if (window.location.hash === '#roster' || window.location.hash === '#curation') {
+    } else {
       state.currentView = 'curation';
     }
 
@@ -96,6 +97,10 @@ window.App = (function() {
   }
 
   function switchView(viewName) {
+    if (!ENABLE_GALLERY_VIEW && viewName === 'gallery') {
+      showToast('Gallery view is currently disabled', 'info');
+      return;
+    }
     state.currentView = viewName === 'gallery' ? 'gallery' : 'curation';
     window.location.hash = state.currentView === 'gallery' ? '#gallery' : '#roster';
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -132,7 +137,7 @@ window.App = (function() {
       cogBtn.title = '';
     }
 
-    if (state.currentView === 'gallery') {
+    if (ENABLE_GALLERY_VIEW && state.currentView === 'gallery') {
       GalleryView.render(mainContainer, state);
     } else {
       CurationView.render(mainContainer, state);
@@ -146,6 +151,7 @@ window.App = (function() {
     }
 
     window.addEventListener('hashchange', () => {
+      if (!ENABLE_GALLERY_VIEW) return;
       const hash = window.location.hash;
       const targetView = hash === '#gallery' ? 'gallery' : 'curation';
       if (state.currentView !== targetView) {
