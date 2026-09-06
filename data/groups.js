@@ -210,4 +210,11 @@ window.SUPER_COLOR_HUNT_GROUPS = [
     category: 'Artificial',
     members: ['Ysabelle Karel Pilare', 'Maria Juliana Landrito']
   },
+  {
+    id: 'grp-26',
+    section: 'MA 3102',
+    color: 'Green',
+    category: 'Natural',
+    members: ['Kert Kobe Castillo', 'Jigo Andrei Llamado']
+  },
 ];
