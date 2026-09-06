@@ -265,5 +265,25 @@ window.SUPER_COLOR_HUNT_GROUPS = [
     category: 'Natural',
     members: ['Yhen Lorraine Enoy', 'Ellayza Marienelle Morzo', 'Joana Eriell Santiago'],
     submissionFile: 'grp-23.jpg'
+  },
+  {
+    id: 'grp-24',
+    groupNumber: 24,
+    groupName: 'Group 24',
+    section: 'MA 3102',
+    color: 'Orange',
+    category: 'Natural',
+    members: ['Jethro Narciso', 'Johan Grace Ople'],
+    submissionFile: 'grp-24.jpg'
+  },
+  {
+    id: 'grp-25',
+    groupNumber: 25,
+    groupName: 'Group 25',
+    section: 'MA 3102',
+    color: 'Blue',
+    category: 'Artificial',
+    members: ['Ysabelle Karel Pilare', 'Maria Juliana Landrito'],
+    submissionFile: 'grp-25.jpg'
   }
 ];
