@@ -196,4 +196,18 @@ window.SUPER_COLOR_HUNT_GROUPS = [
     category: 'Natural',
     members: ['Yhen Lorraine Enoy', 'Ellayza Marienelle Morzo', 'Joana Eriell Santiago']
   },
+  {
+    id: 'grp-24',
+    section: 'MA 3102',
+    color: 'Orange',
+    category: 'Natural',
+    members: ['Jethro Narciso', 'Johan Grace Ople']
+  },
+  {
+    id: 'grp-25',
+    section: 'MA 3102',
+    color: 'Blue',
+    category: 'Artificial',
+    members: ['Ysabelle Karel Pilare', 'Maria Juliana Landrito']
+  },
 ];
